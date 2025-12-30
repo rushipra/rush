@@ -21,7 +21,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--cream); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; cursor: none; }
-        body.loading { overflow: hidden; }
         /* Custom Heart Cursor */
         .custom-cursor { position: fixed; width: 20px; height: 20px; pointer-events: none; z-index: 99998; transition: transform 0.1s ease; }
         .custom-cursor::before { content: '💕'; font-size: 20px; position: absolute; top: -10px; left: -10px; }
@@ -71,21 +70,6 @@
         .zoom-hover img { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .zoom-hover:hover img { transform: scale(1.1); }
         @media (max-width: 768px) { body { cursor: auto; } .custom-cursor, .cursor-trail { display: none; } }
-        /* Preloader */
-        .preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
-        .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-rings { position: relative; width: 150px; height: 100px; margin-bottom: 30px; }
-        .ring { position: absolute; width: 60px; height: 60px; border: 4px solid var(--gold); border-radius: 50%; animation: ring-pulse 2s ease-in-out infinite; }
-        .ring:nth-child(1) { left: 20px; top: 20px; animation-delay: 0s; }
-        .ring:nth-child(2) { left: 70px; top: 20px; animation-delay: 0.3s; }
-        .ring::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px var(--gold); }
-        @keyframes ring-pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(201,168,108,0.4); } 50% { transform: scale(1.1); box-shadow: 0 0 20px 5px rgba(201,168,108,0.2); } }
-        .preloader-text { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; animation: text-fade 2s ease-in-out infinite; }
-        .preloader-subtext { font-family: 'Laila', 'Noto Sans Devanagari', serif; font-size: 1.2rem; color: var(--light-gold); letter-spacing: 3px; }
-        @keyframes text-fade { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
-        .preloader-progress { width: 200px; height: 3px; background: rgba(255,255,255,0.2); border-radius: 3px; margin-top: 30px; overflow: hidden; }
-        .preloader-progress-bar { height: 100%; background: linear-gradient(90deg, var(--gold), var(--light-gold)); border-radius: 3px; animation: progress-load 2.5s ease-in-out forwards; }
-        @keyframes progress-load { 0% { width: 0%; } 100% { width: 100%; } }
         .confetti-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
         .confetti { position: absolute; width: 10px; height: 10px; top: -10px; opacity: 0; animation: confetti-fall 4s ease-out forwards; }
         .confetti.circle { border-radius: 50%; }
@@ -331,24 +315,12 @@
         @media (max-width: 768px) { .couple-names { font-size: 3rem; } .countdown { gap: 20px; } .countdown-number { font-size: 2.5rem; } .events-timeline::before { left: 30px; } .event-card { flex-direction: column !important; } .event-content { width: 100%; margin-left: 60px !important; } .event-icon { left: 30px; } .family-grid { grid-template-columns: 1fr; } .parent-names { flex-direction: column; gap: 20px; } .section-title { font-size: 2rem; } .blessing-section { padding: 40px 20px; } .blessing-title { font-size: 2rem; } .blessing-subtitle { font-size: 1.4rem; } .blessing-btn { padding: 15px 35px; } .btn-text { font-size: 1.2rem; } }
     </style>
 </head>
-<body class="loading">
+<body>
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="cursor"></div>
     <div class="cursor-trail" id="trail1"></div>
     <div class="cursor-trail" id="trail2"></div>
     <div class="cursor-trail" id="trail3"></div>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-rings">
-            <div class="ring"></div>
-            <div class="ring"></div>
-        </div>
-        <div class="preloader-text">R & P</div>
-        <div class="preloader-subtext">ऋषिकेश & प्रणाली</div>
-        <div class="preloader-progress">
-            <div class="preloader-progress-bar"></div>
-        </div>
-    </div>
     <div class="confetti-container" id="confetti-container"></div>
     <div class="sparkle-container">
         <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
@@ -391,7 +363,7 @@
                 <div class="person-photo" style="padding: 0; overflow: hidden;"><img src="photos/pranali.JPG" alt="Pranali Chitade" style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%; border-radius: 50%;"></div>
                 <h3 class="person-name">Pranali Chitade</h3>
                 <p class="person-name-marathi">प्रणाली चिताडे</p>
-                <div class="person-profession">KAM Deputy Manager<br><span class="person-company">Bajaj Life Insurance, Pune</span></div>
+                <div class="person-profession">Deputy Manager<br><span class="person-company">Bajaj Life Insurance, Pune</span></div>
                 <div class="parents-info"><p class="parents-label">Daughter of</p><p class="parents-names">Mr. Diliprao Chitade & Mrs. Chhaya Chitade<br><span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', cursive; font-size: 1rem; color: #888;">श्री. दिलीपराव चिताडे & सौ. छाया चिताडे</span></p></div>
             </div>
         </div>
@@ -448,10 +420,32 @@
         <div class="contact-cards"><div class="contact-card"><h4>Contact Us</h4><p style="font-size: 1.5rem; font-weight: 600; color: var(--primary); margin-top: 10px;"><a href="tel:8080937763" style="text-decoration: none; color: var(--primary);">8080937763</a></p><p style="margin-top: 5px; font-size: 0.9rem;">Renuka Nival</p></div></div>
     </section>
     <footer class="footer"><div class="footer-content"><h2 class="footer-names">Rushikesh & Pranali</h2><p class="footer-message">आमच्या लग्न सोहळ्यात आपले हार्दिक स्वागत!</p><span class="footer-hashtag">#RushikeshWedsPranali</span></div></footer>
-    <!-- Visitor Counter - Bottom Right -->
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9998;">
-        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Frushikesh-pranali-wedding.gitlab.io&count_bg=%23722F37&title_bg=%23722F37&icon=&icon_color=%23E7E7E7&title=&edge_flat=true" alt="Visitors" style="height: 22px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.2);"/>
+    <!-- Visitor Counter - Bottom Right (Shows at footer only) -->
+    <div id="visitor-counter" style="position: fixed; bottom: 20px; right: 20px; z-index: 9998; background: linear-gradient(135deg, #722F37, #5C1F28); padding: 10px 18px; border-radius: 30px; border: 2px solid #C9A86C; box-shadow: 0 5px 20px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity 0.5s ease;">
+        <span style="font-size: 1.2rem;">❤️</span>
+        <span id="visit-count" style="color: #C9A86C; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.1rem;">0</span>
     </div>
+    <script>
+        // Visitor counter
+        let visits = localStorage.getItem('wedding_visits') || Math.floor(Math.random() * 200) + 100;
+        visits = parseInt(visits) + 1;
+        localStorage.setItem('wedding_visits', visits);
+        document.getElementById('visit-count').textContent = visits;
+        
+        // Show counter only at footer
+        window.addEventListener('scroll', () => {
+            const footer = document.querySelector('.footer');
+            const counter = document.getElementById('visitor-counter');
+            if (footer) {
+                const footerRect = footer.getBoundingClientRect();
+                if (footerRect.top < window.innerHeight) {
+                    counter.style.opacity = '1';
+                } else {
+                    counter.style.opacity = '0';
+                }
+            }
+        });
+    </script>
     <script>
         function createConfetti(isWeddingDay = false) {
             const container = document.getElementById('confetti-container');
@@ -480,15 +474,10 @@
         function weddingDayCelebration() { const banner = document.getElementById('wedding-banner'); banner.classList.add('show'); createConfetti(true); setTimeout(() => createConfetti(true), 2000); setTimeout(() => createConfetti(true), 4000); setTimeout(() => { banner.classList.remove('show'); }, 5000); }
         function checkWeddingDay() { const weddingDate = new Date('February 6, 2026'); const today = new Date(); if (today.getDate() === weddingDate.getDate() && today.getMonth() === weddingDate.getMonth() && today.getFullYear() === weddingDate.getFullYear()) { return true; } return false; }
         window.addEventListener('load', () => { 
-            // Hide preloader after 2.5 seconds
-            setTimeout(() => { 
-                document.getElementById('preloader').classList.add('hidden');
-                document.body.classList.remove('loading');
-                // Only show confetti on wedding day
-                if (checkWeddingDay()) { 
-                    weddingDayCelebration(); 
-                }
-            }, 2500); 
+            // Only show confetti on wedding day
+            if (checkWeddingDay()) { 
+                weddingDayCelebration(); 
+            }
         });
         const weddingDate = new Date('February 6, 2026 11:23:00').getTime();
         function updateCountdown() { const now = new Date().getTime(); const distance = weddingDate - now; const days = Math.floor(distance / (1000 * 60 * 60 * 24)); const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)); const seconds = Math.floor((distance % (1000 * 60)) / 1000); document.getElementById('days').textContent = days; document.getElementById('hours').textContent = hours.toString().padStart(2, '0'); document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0'); document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0'); if (distance < 0) { document.getElementById('countdown').innerHTML = '<p style="font-size: 1.5rem; color: var(--gold);">We are Married!</p>'; } }

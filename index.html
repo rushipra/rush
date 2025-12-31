@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#722F37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Rushikesh & Pranali Wedding | 6th February 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Baloo+2:wght@400;500;600;700;800&family=Laila:wght@400;500;600;700&family=Anek+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -19,7 +22,24 @@
             --text-light: #666666;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+        
+        /* Touch-friendly improvements */
+        button, a, .quiz-option, .venue-map-btn, .gallery-item { 
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        /* Prevent text selection on interactive elements */
+        .quiz-option, .countdown-item, .flip-countdown-item {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* Smooth scrolling for iOS */
+        .wishes-scroll-container {
+            -webkit-overflow-scrolling: touch;
+        }
         body { font-family: 'Poppins', sans-serif; background-color: var(--cream); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; cursor: none; }
         /* Custom Heart Cursor */
         .custom-cursor { position: fixed; width: 20px; height: 20px; pointer-events: none; z-index: 99998; transition: transform 0.1s ease; }
@@ -351,8 +371,98 @@
         .blessing-decorations span:nth-child(2) { animation-delay: 0.5s; }
         .blessing-decorations span:nth-child(3) { animation-delay: 1s; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @media (max-width: 992px) { .couple-names { font-size: 4rem; } .couple-container { grid-template-columns: 1fr; } .couple-divider { padding: 20px 0; font-size: 3rem; } .navbar { padding: 15px 20px; } .nav-links { display: none; } }
-        @media (max-width: 768px) { .couple-names { font-size: 3rem; } .countdown { gap: 20px; } .countdown-number { font-size: 2.5rem; } .events-timeline::before { left: 30px; } .event-card { flex-direction: column !important; } .event-content { width: 100%; margin-left: 60px !important; } .event-icon { left: 30px; } .family-grid { grid-template-columns: 1fr; } .parent-names { flex-direction: column; gap: 20px; } .section-title { font-size: 2rem; } .blessing-section { padding: 40px 20px; } .blessing-title { font-size: 2rem; } .blessing-subtitle { font-size: 1.4rem; } .blessing-btn { padding: 15px 35px; } .btn-text { font-size: 1.2rem; } }
+        @media (max-width: 992px) { 
+            .couple-names { font-size: 4rem; } 
+            .couple-container { grid-template-columns: 1fr; } 
+            .couple-divider { padding: 20px 0; font-size: 3rem; } 
+            .navbar { padding: 15px 20px; } 
+            .nav-links { display: none; } 
+        }
+        @media (max-width: 768px) { 
+            /* Hero Section Mobile */
+            .couple-names { font-size: 2.5rem; } 
+            .couple-names-marathi { font-size: 1.8rem; }
+            .wedding-date { font-size: 1.2rem; letter-spacing: 2px; }
+            .wedding-location { font-size: 0.9rem; }
+            .save-date-label { font-size: 0.9rem; letter-spacing: 4px; }
+            
+            /* Countdown Mobile */
+            .countdown { gap: 15px; flex-wrap: wrap; } 
+            .countdown-number { font-size: 2rem; } 
+            .countdown-label { font-size: 0.7rem; }
+            
+            /* Flip Countdown Mobile */
+            .flip-countdown { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .flip-countdown-item { width: 70px; height: 90px; font-size: 2.5rem; line-height: 90px; }
+            .flip-countdown-label { font-size: 0.7rem; }
+            
+            /* Events Timeline Mobile */
+            .events-timeline::before { left: 20px; } 
+            .event-card { flex-direction: column !important; } 
+            .event-content { width: calc(100% - 50px); margin-left: 50px !important; padding: 20px; } 
+            .event-icon { left: 20px; width: 45px; height: 45px; font-size: 1rem; }
+            .event-name { font-size: 1.3rem; }
+            
+            /* Family Section Mobile */
+            .family-grid { grid-template-columns: 1fr; gap: 20px; } 
+            .family-card { padding: 25px; }
+            .parent-names { flex-direction: column; gap: 15px; } 
+            
+            /* Section Titles Mobile */
+            .section-title { font-size: 1.8rem; } 
+            .section-subtitle { font-size: 1.2rem; }
+            section { padding: 60px 15px; }
+            
+            /* Person Cards Mobile */
+            .person-card { padding: 25px; }
+            .person-photo { width: 200px; height: 200px; }
+            .person-name { font-size: 1.5rem; }
+            .person-name-marathi { font-size: 1.2rem; }
+            .person-profession { padding: 10px 15px; font-size: 0.9rem; }
+            
+            /* Gallery Mobile */
+            .gallery-photos { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .gallery-item { aspect-ratio: 1/1; }
+            
+            /* Venues Mobile */
+            .venues-grid { grid-template-columns: 1fr; }
+            .venue-card { margin: 0 10px; }
+            
+            /* Quiz Mobile */
+            .quiz-container { padding: 20px !important; margin: 0 10px !important; }
+            .quiz-question { font-size: 1.2rem !important; }
+            .quiz-option { padding: 12px 15px !important; font-size: 0.95rem !important; }
+            
+            /* Footer Mobile */
+            .footer { padding: 50px 15px; }
+            .footer-names { font-size: 2.5rem; }
+            .footer-message { font-size: 1.1rem; }
+            .footer-hashtag { font-size: 0.9rem; padding: 10px 20px; }
+            
+            /* Music Player Mobile */
+            .music-player { bottom: 15px; right: 15px; padding: 10px 15px; }
+            .music-icon { font-size: 1.2rem; }
+            .music-text { font-size: 0.8rem; }
+            
+            /* Visitor Counter Mobile */
+            #visitor-counter { bottom: 15px; right: 15px; padding: 8px 12px; }
+            
+            /* Contact Cards Mobile */
+            .contact-cards { flex-direction: column; gap: 20px; }
+            .contact-card { padding: 25px 30px; }
+        }
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .couple-names { font-size: 2rem; }
+            .couple-names-marathi { font-size: 1.5rem; }
+            .countdown { gap: 10px; }
+            .countdown-number { font-size: 1.8rem; }
+            .flip-countdown-item { width: 60px; height: 75px; font-size: 2rem; line-height: 75px; }
+            .section-title { font-size: 1.5rem; }
+            .person-photo { width: 160px; height: 160px; }
+            .gallery-photos { grid-template-columns: 1fr; }
+            .footer-names { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -805,9 +915,33 @@
             @media (max-width: 992px) {
                 .wishes-blessing-container {
                     grid-template-columns: 1fr;
+                    gap: 30px;
                 }
                 .wishes-scroll-container {
-                    height: 400px;
+                    height: 350px;
+                }
+                .blessing-form-wrapper iframe {
+                    height: 500px;
+                }
+            }
+            @media (max-width: 768px) {
+                .wishes-column h3, .blessing-column h3 {
+                    font-size: 2rem;
+                }
+                .wishes-scroll-container {
+                    height: 300px;
+                }
+                .wish-card-mini {
+                    padding: 15px;
+                }
+                .wish-text-mini {
+                    font-size: 0.9rem;
+                }
+                .next-wish-text {
+                    font-size: 1.4rem;
+                }
+                .blessing-form-wrapper iframe {
+                    height: 450px;
                 }
             }
         </style>
@@ -1086,4 +1220,5 @@
     </script>
 </body>
 </html>
+
 
